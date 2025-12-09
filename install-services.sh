@@ -10,7 +10,7 @@ echo "Usuário: $CURRENT_USER"
 
 # 1. Criar Serviço do Backend (Go)
 echo "Criando serviço do Backend..."
-cat <<EOF > /etc/systemd/system/pixelcraft-backend.service
+cat <<EOF > /etc/systemd/system/backend.service
 [Unit]
 Description=Pixelcraft System Manager Backend
 After=network.target
@@ -29,10 +29,10 @@ EOF
 
 # 2. Criar Serviço do Frontend (Next.js)
 echo "Criando serviço do Frontend..."
-cat <<EOF > /etc/systemd/system/pixelcraft-frontend.service
+cat <<EOF > /etc/systemd/system/frontend.service
 [Unit]
 Description=Pixelcraft System Manager Frontend
-After=network.target pixelcraft-backend.service
+After=network.target backend.service
 
 [Service]
 User=$CURRENT_USER
@@ -53,15 +53,15 @@ echo "Recarregando Systemd..."
 systemctl daemon-reload
 
 echo "Ativando serviços para iniciar no boot..."
-systemctl enable pixelcraft-backend
-systemctl enable pixelcraft-frontend
+systemctl enable backend
+systemctl enable frontend
 
 echo "Iniciando serviços agora..."
 # Para serviços antigos se existirem e reinicia
-systemctl restart pixelcraft-backend
-systemctl restart pixelcraft-frontend
+systemctl restart backend
+systemctl restart frontend
 
 echo "--- CONCLUÍDO! ---"
 echo "Verifique o status com:"
-echo "  systemctl status pixelcraft-backend"
-echo "  systemctl status pixelcraft-frontend"
+echo "  systemctl status backend"
+echo "  systemctl status frontend"
