@@ -157,8 +157,8 @@ func authMiddleware() gin.HandlerFunc {
 
 func main() {
 	// Direct assignment to ensure no env var issues
-	CloudflareAPIToken = "zNSOfC0VLF5du2m3MSyUAWlaIBoAnvzwBVaIkIPP"
-	CloudflareZoneID = "24c7fd4d380e2a496e3f0515c844f16f"
+	CloudflareAPIToken = "sua key aqui"
+	CloudflareZoneID = "sua zona aqui"
 
 	fmt.Println("System Manager Starting...")
 	fmt.Printf("Configured Cloudflare Zone: %s\n", CloudflareZoneID)
